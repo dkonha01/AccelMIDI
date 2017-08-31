@@ -2,7 +2,6 @@
 
 
 #define THRESHOLD_1 13
-
 #define THRESHOLD_2 23
 
 AccelerationReading previousAccel;
@@ -10,7 +9,6 @@ AccelerationReading previousAccel;
 void setup() {
  
   Serial.begin(); 
-
   previousAccel = Bean.getAcceleration(); 
     
 }
@@ -21,8 +19,6 @@ void loop() {
 
   int readX =  map (acceleration.xAxis, 0, 1023, 0, 127) + random(7, 23);
   //  int readX =  (acceleration.xAxis/9) ;
-
-
   
   int readY =  map (acceleration.yAxis, 0, 1023, 0, 127) - random(13,23);
   //  int readY =  ((acceleration.yAxis/11) - random(13,23));
@@ -39,32 +35,18 @@ void loop() {
   int accelDifference = getAccelDifference(previousAccel, currentAccel);   
   previousAccel = currentAccel;  
 
- 
-
 
     if(accelDifference > THRESHOLD_2){   
 
         BeanMidi.noteOn(CHANNEL1, sumXY, 11);  
         BeanMidi.noteOn(CHANNEL1, readY, sumXY);  
-
-     
-
-
-        
-    }
-
-
-   
+       
+    }   
 
     else if (accelDifference > THRESHOLD_1){
 
         BeanMidi.noteOn(CHANNEL1, readX, 9);  
-        BeanMidi.noteOn(CHANNEL1, diff2x, sumXY);   
-
-        
-
-        
-        
+        BeanMidi.noteOn(CHANNEL1, diff2x, sumXY);                     
            
     }
 
@@ -73,11 +55,7 @@ void loop() {
        for (int j = 0; j < 128; j++) {
 
         BeanMidi.noteOff(CHANNEL1, j, 7);  
-        // BeanMidi.noteOff(CHANNEL1, j, 15);  
-
-
-        
-             
+        // BeanMidi.noteOff(CHANNEL1, j, 15);                      
        
       }
     }
@@ -87,8 +65,6 @@ void loop() {
     
    Bean.setLed((uint8_t)readX,(uint8_t)readY,(uint8_t)readZ);   
 }
-
-
 
 
 int getAccelDifference(AccelerationReading readingOne, AccelerationReading readingTwo){
