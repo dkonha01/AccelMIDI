@@ -28,6 +28,9 @@ void loop() {
   int diff2x = abs(readX - readY);
   //  int diff2x = abs(readX - readY);
 
+   int diff3x = abs((readX*3) - readY);
+  //  int diff2x = abs(readX - readY);
+
   AccelerationReading currentAccel = Bean.getAcceleration();    
   int accelDifference = getAccelDifference(previousAccel, currentAccel);   
   previousAccel = currentAccel;  
