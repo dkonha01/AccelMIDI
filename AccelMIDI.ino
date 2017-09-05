@@ -47,6 +47,7 @@ void loop() {
 
         BeanMidi.noteOn(CHANNEL1, readX, 9);  
         BeanMidi.noteOn(CHANNEL1, diff2x, sumXY);
+        BeanMidi.noteOn(CHANNEL1, diff4, diffx3);
                              
            
     }
