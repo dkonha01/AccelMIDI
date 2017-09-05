@@ -1,6 +1,3 @@
-#include <SparkFun_MAG3110.h>
-
-
 #define THRESHOLD_1 13
 #define THRESHOLD_2 23
 
@@ -29,7 +26,9 @@ void loop() {
   //  int sumXY = ((readX + readY)/13);
 
   int diff2x = abs(readX - readY);
-  //  int diff2x = abs(readX - readY);
+  int diffx3 = abs((readX*3) - readY);
+  int diff4 = abs(readX + readY)/4;
+ 
 
   AccelerationReading currentAccel = Bean.getAcceleration();    
   int accelDifference = getAccelDifference(previousAccel, currentAccel);   
@@ -40,13 +39,16 @@ void loop() {
 
         BeanMidi.noteOn(CHANNEL1, sumXY, 11);  
         BeanMidi.noteOn(CHANNEL1, readY, sumXY);  
+        BeanMidi.noteOn(CHANNEL1, diffx3, diff2x);  
        
     }   
 
     else if (accelDifference > THRESHOLD_1){
 
         BeanMidi.noteOn(CHANNEL1, readX, 9);  
-        BeanMidi.noteOn(CHANNEL1, diff2x, sumXY);                     
+        BeanMidi.noteOn(CHANNEL1, diff2x, sumXY);
+        BeanMidi.noteOn(CHANNEL1, diff4, diffx3);
+                             
            
     }
 
