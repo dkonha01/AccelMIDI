@@ -13,6 +13,8 @@ void setup() {
     
 }
 
+// Here we taking the accelerator sensor data and manipulate it in different ways
+
 void loop() {
  
   AccelerationReading acceleration = Bean.getAcceleration();
@@ -37,6 +39,10 @@ void loop() {
   AccelerationReading currentAccel = Bean.getAcceleration();    
   int accelDifference = getAccelDifference(previousAccel, currentAccel);   
   previousAccel = currentAccel;  
+ 
+ 
+// Here we take these numbers generated from the sensor readings and use them to trigger different 
+// sets of MIDI note data. This data is sent via Bluetooth to iOS devices running apps such as Animoog
 
 
     if(accelDifference > THRESHOLD_4){   
